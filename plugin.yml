@@ -1,0 +1,10 @@
+name: TeleportPlus
+version: 1.0.0
+api: 1.0.0
+main: PocketEssential\TeleportPlus\Main
+
+
+commands:
+    tpall:
+        description: Teleport all players to you
+        permission: TeleportPlus.use
