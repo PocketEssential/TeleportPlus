@@ -32,26 +32,41 @@ use pocketmine\Server;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
+use pocketmine\level\Level;
 
-class Main extends PluginBase implements Listener {
+class Main extends PluginBase implements Listener
+{
 
-    public function onEnable(){
-        $this->getLogger()->info(TextFormat::GREEN."TeleportPlus has been enabled");
+    public function onEnable()
+    {
+        $this->getLogger()->info(TextFormat::GREEN . "TeleportPlus has been enabled");
 
     }
-    public function onDisable(){
-        $this->getLogger()->info(TextFormat::GREEN."TeleportPlus has been disabled");
+
+    public function onDisable()
+    {
+        $this->getLogger()->info(TextFormat::GREEN . "TeleportPlus has been disabled");
     }
-    public function onCommand(CommandSender $sender, Command $command, $label, array $args){
+
+    public function onCommand(CommandSender $sender, Command $command, $label, array $args)
+    {
         $cmd = strtolower($command->getName());
-        if($cmd === "tpall"){
-            if(!$sender->hasPermission("TeleportPlus.use")) return;
+        if ($cmd === "tpall") {
+            if (!$sender->hasPermission("TeleportPlus.use")) return;
 
-            $sender->sendMessage(TextFormat::BLUE."Teleporting all players to you.....");
-            foreach($this->getServer()->getOnlinePlayers() as $p){
+            $sender->sendMessage(TextFormat::BLUE . "Teleporting all players to you.....");
+            foreach ($this->getServer()->getOnlinePlayers() as $p) {
                 $p->teleport($sender);
-                $p->sendMessage(TextFormat::RED."You have been teleported to ".TextFormat::BLUE.$sender->getName());
+                $p->sendMessage(TextFormat::RED . "You have been teleported to " . TextFormat::BLUE . $sender->getName());
             }
+        } elseif ($cmd == "world") {
+            $this->getServer()->loadLevel($args[0]);
+            $level = $this->getServer()->getLevelByName($args[0]);
+            $sender->sendMessage(TextFormat::DARK_RED . "Teleporting to $args[0]");
+            $sender->teleport($level->getSafeSpawn());
+            $sender->sendMessage(TextFormat::DARK_AQUA . "You have been teleported to $args[0]");
+            return true;
         }
     }
 }
+

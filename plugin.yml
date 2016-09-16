@@ -8,3 +8,6 @@ commands:
     tpall:
         description: Teleport all players to you
         permission: TeleportPlus.use
+    world:
+        description: Teleport all players to you
+        permission: TeleportPlus.use.world
