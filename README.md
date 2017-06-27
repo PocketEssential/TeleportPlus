@@ -12,3 +12,6 @@ Teleport all players to you! Better then EssentialsPE
 
 ## Suggestions?
 - Let us know and we"ll add it :)
+
+## Builds
+[![Poggit-CI](https://poggit.pmmp.io/ci.badge/PocketEssential/TeleportPlus/TeleportPlus)](https://poggit.pmmp.io/ci/PocketEssential/TeleportPlus/TeleportPlus)
